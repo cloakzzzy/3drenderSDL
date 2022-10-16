@@ -1,9 +1,7 @@
 // g++ main.cpp `pkg-config --cflags --libs sdl2`
-//second commit 
-//gfhgfdgsggsgfdgd
+#include<windows.h>
 #include <SDL.h>
 #include <iostream>
-#include<windows.h>
 #include<math.h>
 #include"Utillities.h"
 #include<string>
@@ -18,9 +16,8 @@ using namespace std;
 
 int main(int argc, char** argv)
 {
-
-    //project(60,500,500,200,0,200);
-
+    system("python gitgiver.pyw");
+    
     SDLWindow window("3d render using SDL2", 500, 100, 500, 500,0,0,0);
     
     int deg = -1;
