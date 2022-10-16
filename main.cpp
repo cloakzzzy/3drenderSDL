@@ -16,7 +16,7 @@ using namespace std;
 
 int main(int argc, char** argv)
 {
-    //system("python gitgiver.pyw");
+    system("python gitgiver.pyw");
     
     SDLWindow window("3d render using SDL2", 500, 100, 500, 500,0,0,0);
     
