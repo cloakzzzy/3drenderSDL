@@ -1,5 +1,6 @@
 // g++ main.cpp `pkg-config --cflags --libs sdl2`
 //second commit 
+//gfhgfdgsg
 #include <SDL.h>
 #include <iostream>
 #include<windows.h>
