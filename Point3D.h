@@ -31,13 +31,6 @@ public:
     {
         return round((y + cam.y)*-1 * cam.focal_length / (cam.focal_length + (z + cam.z)) + round(cam.height / 2));
     }
-
-    void Project(Camera& cam,p3d& point) 
-    {
-        point.x = round((x * cam.focal_length / (cam.focal_length + z)) + round(cam.width / 2));
-        point.y = round(y * -1 * cam.focal_length / (cam.focal_length + z) + round(cam.height / 2));
-    }
-
     //rotation
     static void rotateXZ(p3d& point, int cx, int cy, int px, int py, int deg = 1)
     {
