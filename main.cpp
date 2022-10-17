@@ -28,9 +28,8 @@ int main(int argc, char** argv)
     int frames = 0;
     int rotations = 0;
 
-    //defualt -50, 50
     
-    Camera cam(window.W, window.H, 90);
+    Camera cam(window.W, window.H, 90, 0, 0, 0, 30);
     vector <p3d> ps{
         //bottom face
         //top left 
@@ -92,6 +91,24 @@ int main(int argc, char** argv)
         }
         });
 
+    thread projectionthread([&]() {
+        while (window.Running) {
+            Sleep(1);
+            if (rotated == true)
+            {
+                ps2[0].Set(ps[0].Projectx(cam), ps[0].Projecty(cam));
+                ps2[1].Set(ps[1].Projectx(cam), ps[1].Projecty(cam));
+                ps2[2].Set(ps[2].Projectx(cam), ps[2].Projecty(cam));
+                ps2[3].Set(ps[3].Projectx(cam), ps[3].Projecty(cam));
+                ps2[4].Set(ps[4].Projectx(cam), ps[4].Projecty(cam));
+                ps2[5].Set(ps[5].Projectx(cam), ps[5].Projecty(cam));
+                ps2[6].Set(ps[6].Projectx(cam), ps[6].Projecty(cam));
+                ps2[7].Set(ps[7].Projectx(cam), ps[7].Projecty(cam));
+                rotated = false;
+            }
+        }
+        });
+
     window.Mainloop([&] {
 
         Sleep(3);
@@ -138,18 +155,7 @@ int main(int argc, char** argv)
         //alternate(z, -170, 200, 1);
 
         //projection
-        if (rotated == true)
-        {
-            ps2[0].Set(ps[0].Projectx(cam), ps[0].Projecty(cam));
-            ps2[1].Set(ps[1].Projectx(cam), ps[1].Projecty(cam));
-            ps2[2].Set(ps[2].Projectx(cam), ps[2].Projecty(cam));
-            ps2[3].Set(ps[3].Projectx(cam), ps[3].Projecty(cam));
-            ps2[4].Set(ps[4].Projectx(cam), ps[4].Projecty(cam));
-            ps2[5].Set(ps[5].Projectx(cam), ps[5].Projecty(cam));
-            ps2[6].Set(ps[6].Projectx(cam), ps[6].Projecty(cam));
-            ps2[7].Set(ps[7].Projectx(cam), ps[7].Projecty(cam));
-            rotated = false;
-        }
+        
        
         //render
         
@@ -189,6 +195,7 @@ int main(int argc, char** argv)
     }, 1);
     
     motionthread.detach();
+    projectionthread.detach();
     window.Destroy();
 
     return 0;
