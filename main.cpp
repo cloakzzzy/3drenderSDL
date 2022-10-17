@@ -16,7 +16,7 @@ using namespace std;
 
 int main(int argc, char** argv)
 {
-    //system("python gitgiver.pyw");
+    system("python gitgiver.pyw");
     
     SDLWindow window("3d render using SDL2", 500, 100, 500, 500,0,0,0);
     
@@ -58,13 +58,14 @@ int main(int argc, char** argv)
     
     window.InitWindow();
     bool rotate = false;
-    bool rotated = false;
+    bool rotated = true;
 
     thread motionthread([&]() {
         while (window.Running) {
-            Sleep(1);
+            Sleep(3);
             if (rotate == true) 
             {
+                deg -= 1;
                 //bottom points rotation
 
                 //top left 
@@ -96,6 +97,7 @@ int main(int argc, char** argv)
             Sleep(1);
             if (rotated == true)
             {
+                rotate = true;
                 ps2[0].Set(ps[0].Projectx(cam), ps[0].Projecty(cam));
                 ps2[1].Set(ps[1].Projectx(cam), ps[1].Projecty(cam));
                 ps2[2].Set(ps[2].Projectx(cam), ps[2].Projecty(cam));
@@ -150,8 +152,7 @@ int main(int argc, char** argv)
 
         }
         
-        deg -= 1;
-        rotate = true;
+        
         //alternate(z, -170, 200, 1);
 
         //projection
