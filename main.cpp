@@ -16,10 +16,9 @@ using namespace std;
 
 int main(int argc, char** argv)
 {
-    system("python gitgiver.pyw");
+    //system("python gitgiver.pyw");
     
     SDLWindow window("3d render using SDL2", 500, 100, 500, 500,0,0,0);
-    
     int deg = -1;
     int deg2 = -3;
 
@@ -31,7 +30,7 @@ int main(int argc, char** argv)
     
     Camera cam(window.W, window.H, 90, 0, 0, 0, 30);
     vector <p3d> ps{
-        //bottom face
+        //bottom faceSVNUESNUVE
         //top left 
         p3d(-50,-100,50),
         //top right
@@ -60,6 +59,7 @@ int main(int argc, char** argv)
     bool rotate = false;
     bool rotated = true;
 
+    /*
     thread motionthread([&]() {
         while (window.Running) {
             Sleep(3);
@@ -91,13 +91,13 @@ int main(int argc, char** argv)
             }
         }
         });
-
+    */
     thread projectionthread([&]() {
         while (window.Running) {
             Sleep(1);
             if (rotated == true)
             {
-                rotate = true;
+                //rotate = true;
                 ps2[0].Set(ps[0].Projectx(cam), ps[0].Projecty(cam));
                 ps2[1].Set(ps[1].Projectx(cam), ps[1].Projecty(cam));
                 ps2[2].Set(ps[2].Projectx(cam), ps[2].Projecty(cam));
@@ -106,46 +106,52 @@ int main(int argc, char** argv)
                 ps2[5].Set(ps[5].Projectx(cam), ps[5].Projecty(cam));
                 ps2[6].Set(ps[6].Projectx(cam), ps[6].Projecty(cam));
                 ps2[7].Set(ps[7].Projectx(cam), ps[7].Projecty(cam));
-                rotated = false;
+                //rotated = false;
             }
         }
         });
 
+    //cout << cam.focal_length << '\n';
+    //p3d point(50,50,-120);
+    //point.Visible(cam);
+    
+    
     window.Mainloop([&] {
 
         Sleep(3);
         SDL_SetRenderDrawColor(window.renderer, 255, 255, 255, 255);
-
+       
         SDL_Event eve;
+        cout<<ps[0].Visible(cam)<<'\n';
 
         while (SDL_PollEvent(&eve))
         {
-
+            Sleep(1);
             if (eve.type == SDL_KEYDOWN)
             {
                 if (eve.key.keysym.scancode == SDL_SCANCODE_D)
                 {
-                    cam.x -= 20;
+                    cam.x += 20;
                 }
                 if (eve.key.keysym.scancode == SDL_SCANCODE_A)
                 {
-                    cam.x += 20;
+                    cam.x -= 20;
                 }
                 if (eve.key.keysym.scancode == SDL_SCANCODE_W)
                 {
-                    cam.z -= 20;
+                    cam.z += 20;
                 }
                 if (eve.key.keysym.scancode == SDL_SCANCODE_S)
                 {
-                    cam.z += 20;
+                    cam.z -= 20;
                 }
                 if (eve.key.keysym.scancode == SDL_SCANCODE_SPACE)
                 {
-                    cam.y -= 20;
+                    cam.y += 20;
                 }
                 if (eve.key.keysym.scancode == SDL_SCANCODE_LSHIFT)
                 {
-                    cam.y += 20;
+                    cam.y -= 20;
                 }
 
             }
@@ -195,7 +201,9 @@ int main(int argc, char** argv)
         
     }, 1);
     
-    motionthread.detach();
+
+
+    //motionthread.detach();
     projectionthread.detach();
     window.Destroy();
 
