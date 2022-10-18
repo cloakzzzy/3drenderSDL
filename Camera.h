@@ -1,6 +1,8 @@
 #pragma once
 #include<math.h>
 
+#define RAD 3.14159265358/180 
+
 class Camera {
 public:
 	int width; int height; int fov; int focal_length; int x; int y; int z; int degx;

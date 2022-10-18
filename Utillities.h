@@ -5,11 +5,7 @@
 #include<windows.h>
 #include<future>
 
-//#define RAD 3.14159265358/180 
-
 #define RAD 3.14159265358/180 
-
-
 using namespace std;
 
 
@@ -64,4 +60,24 @@ void rotateXZ(int cx, int cz, int deg = 1)
 	}
 */
 
+/*
+deobfuscated version of visible
+void Visible(Camera& cam)
+{
+	// visible = false | if x is larger than xboundright
+	// or 
+	// visible = false | if x is smaller than xboundleft
+	// or
+	// visible = false | if y is larger than yboundtop
+	// or 
+	// visible = false | if y is smaller than yboundbottom
 
+	int length = round(cam.width + 2 * (tan(cam.fov / 2 * RAD) * (z - cam.z)));
+	int xboundleft = cam.x - length / 2;
+	int xboundright = cam.x + length / 2;
+	int yboundtop = cam.y - length / 2;
+	int yboundbottom = cam.y + length / 2;
+
+	cout << "X: " << xboundleft << " " << xboundright << " Y: " << yboundtop << " " << yboundbottom << '\n';
+}
+*/

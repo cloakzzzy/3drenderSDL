@@ -1,5 +1,7 @@
 #pragma once
 
+#define RAD 3.14159265358/180 
+
 class p2d {        
 public:     
     int x; int y;
@@ -21,14 +23,11 @@ public:
         y = Y;
     }
 
-    /*
-    P2d rotate(int cx, int cy, int deg = 1)
+    static void rotateXZ(p2d& point, int cx, int cy, int px, int py, int deg = 1)
     {
-        P2d point;
-        point.x = int((x * cos(deg * RAD)) - (y * sin(deg * RAD))) + cx;
-        point.y = int((x * sin(deg * RAD)) + (y * cos(deg * RAD))) + cy;
-        return point;
+        point.x = int((px * cos(deg * RAD)) - (py * sin(deg * RAD))) + cx;
+        point.y = int((px * sin(deg * RAD)) + (py * cos(deg * RAD))) + cy;
     }
-    */
+    
     
 };
